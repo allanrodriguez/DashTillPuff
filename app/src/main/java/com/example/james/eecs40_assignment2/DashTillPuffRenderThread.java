@@ -19,7 +19,7 @@ public class DashTillPuffRenderThread extends Thread
 	public void run()
 	{
 		SurfaceHolder sh = view.getHolder();
-// Main game loop .
+		// Main game loop .
 		while (!Thread.interrupted())
 		{
 			Canvas c = sh.lockCanvas(null);

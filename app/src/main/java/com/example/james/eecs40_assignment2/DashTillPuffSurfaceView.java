@@ -25,8 +25,8 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		renderThread = new DashTillPuffRenderThread(this);
 		renderThread.start();
 
-// Create the sliding background , cosmic factory , trajectory
-// and the space ship
+		// Create the sliding background , cosmic factory , trajectory
+		// and the space ship
 
 	}
 
@@ -42,7 +42,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	{
 		// The cleanest way to stop a thread is by interrupting it .
 		// BubbleShooterThread regularly checks its interrupt flag .
-		bst.interrupt();
+		renderThread.interrupt();
 	}
 
 	@Override
@@ -62,14 +62,20 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	public void onDraw(Canvas c)
 	{
 		super.onDraw(c);
-
-// Draw everything ( restricted to the displayed rectangle ) .
+		renderGame(c);
+		// Draw everything ( restricted to the displayed rectangle ) .
 	}
 
 	@Override
 	public void tick(Canvas c)
 	{
-// Tick background , space ship , cosmic factory , and trajectory .
-// Draw everything ( restricted to the displayed rectangle ) .
+
+		// Tick background , space ship , cosmic factory , and trajectory .
+		// Draw everything ( restricted to the displayed rectangle ) .
+	}
+
+	private void renderGame(Canvas c)
+	{
+
 	}
 }
