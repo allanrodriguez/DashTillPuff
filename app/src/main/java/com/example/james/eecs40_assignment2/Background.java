@@ -31,7 +31,7 @@ public class Background
 	private void draw ( Canvas c )
 	{
 		Paint paint = new Paint() ;
-		paint.setAlpha(1) ; // Control transparency
+		paint.setAlpha(255) ; // Control transparency
 		Rect dst = new Rect ( x1 , y1 , x2 , y2 ) ; // Where to draw .
 		c.drawBitmap(bitmap, null, dst, paint) ;
 	}
