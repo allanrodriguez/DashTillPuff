@@ -11,11 +11,31 @@ public class Trajectory implements TimeConscious
 {
 	private DashTillPuffSurfaceView view;
 	private ArrayList<Point> points = new ArrayList<>();
+	private int delta_x;
+	private int i;
 
 	public Trajectory(DashTillPuffSurfaceView v)
 	{
 		this.view = v;
+		this.delta_x = 0;
 	}
+
+	public void initTrajectory()
+	{
+		Random r = new Random();
+		this.delta_x = view.getWidth()/4;
+		this.i = 5;
+		Point p00 = new Point(delta_x, r.nextInt(view.getHeight()));  // hehe
+		Point p01 = new Point(2*delta_x, r.nextInt(view.getHeight()));
+		Point p10 = new Point(3*delta_x, r.nextInt(view.getHeight()));
+		Point p11 = new Point(4*delta_x, r.nextInt(view.getHeight()));
+		points.add(p00);
+		points.add(p01);
+		points.add(p10);
+		points.add(p11);
+	}
+
+
 
 	@Override
 	public void tick(Canvas canvas)
@@ -23,25 +43,45 @@ public class Trajectory implements TimeConscious
 		// As time ticks , append more points to the trajectory and
 		// discard those points that have crossed the entire
 		// span of the screen .
-
+		for (int i = 0; i < points.size(); i++)
+		{
+			if(points.get(i) != null)
+			{
+				points.get(i).x -= view.getGotta_go_fast();
+				if (points.get(i).x < -delta_x)
+				{
+					points.remove(i);
+				}
+			}
+		}
+	//	if (view.getWidth() - points.get(points.size()-1).x > delta_x)
+	//	{
+			Random r = new Random();
+			Point lol = new Point(delta_x*this.i, r.nextInt(view.getHeight()));
+			this.i++;
+			points.add(lol);
+	//	}
 		draw(canvas);
 	}
 
-	private void draw(Canvas c)
+	public void draw(Canvas c)
 	{
-
-
-/*		Path path = new Path();
-		path.moveTo(); // Move to first point
+		Path path = new Path();
+		path.moveTo(points.get(0).x, points.get(0).y); // Move to first point
 		for (int i = 1; i < points.size(); ++i)
 		{
-
-			path.lineTo(p.x, p.y);
+			if(points.get(i) != null)
+			{
+				path.lineTo(points.get(i).x, points.get(i).y);
+			}
 		}
 		Paint paint = new Paint();
-
 		// Set paint color , alpha , line width , dashed style , etc .
-
+		paint.setAlpha(255) ; // Control transparency
+		paint.setColor(Color.WHITE);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(10);
+		paint.setPathEffect(new DashPathEffect(new float[] {10,20},0));
 		c.drawPath(path, paint);
-*/	}
+	}
 }

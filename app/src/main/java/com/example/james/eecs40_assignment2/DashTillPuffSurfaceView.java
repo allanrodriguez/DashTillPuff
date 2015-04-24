@@ -16,15 +16,22 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
         public Background wall;
         public Background paper;
 	private Trajectory trajectory;
+	private boolean feels_like_the_first_time;	// for initializing trajectory
+	private final int gotta_go_fast = 10; 		// speed of background
 
 	public DashTillPuffSurfaceView(Context context)
 	{
 		super(context);
 		getHolder().addCallback(this);
 		trajectory = new Trajectory(this);
-
+		feels_like_the_first_time = true;
                 wall = new Background(this);
                 paper = new Background(this);
+	}
+
+	public int getGotta_go_fast()
+	{
+		return this.gotta_go_fast;
 	}
 
 	@Override
@@ -100,10 +107,16 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                         }
                         else
                         {
-                                wall.setX(wall.getX2() - getWidth() - 9, wall.getX2() - 10);
-                                paper.setX(paper.getX2() - getWidth() - 9, paper.getX2() - 10);
+                                wall.setX(wall.getX2() - getWidth() - (getGotta_go_fast()-1), wall.getX2() - getGotta_go_fast());
+                                paper.setX(paper.getX2() - getWidth() - (getGotta_go_fast()-1), paper.getX2() - getGotta_go_fast());
                         }
                 }
+		if(feels_like_the_first_time)
+		{
+			trajectory.initTrajectory();
+			feels_like_the_first_time = false;
+		}
+		trajectory.tick(c);
                 renderGame(c);
 		// Tick background , space ship , cosmic factory , and trajectory .
 		// Draw everything ( restricted to the displayed rectangle ) .
@@ -113,5 +126,6 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	{
                 wall.draw(c);
                 paper.draw(c);
+		trajectory.draw(c);
 	}
 }
