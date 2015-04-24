@@ -7,7 +7,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * Created by James on 4/22/2015.
+ * Created by our glorious leader on 4/22/2015.
  */
 
 public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolder.Callback, TimeConscious
@@ -107,8 +107,8 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                         }
                         else
                         {
-                                wall.setX(wall.getX2() - getWidth() - (getGotta_go_fast()-1), wall.getX2() - getGotta_go_fast());
-                                paper.setX(paper.getX2() - getWidth() - (getGotta_go_fast()-1), paper.getX2() - getGotta_go_fast());
+                                wall.setX(wall.getX2() - getWidth() - (gotta_go_fast-1), wall.getX2() - gotta_go_fast);
+                                paper.setX(paper.getX2() - getWidth() - (gotta_go_fast-1), paper.getX2() - gotta_go_fast);
                         }
                 }
 		if(feels_like_the_first_time)

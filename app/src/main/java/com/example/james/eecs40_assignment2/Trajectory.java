@@ -25,7 +25,7 @@ public class Trajectory implements TimeConscious
 		Random r = new Random();
 		this.delta_x = view.getWidth()/4;
 		this.i = 5;
-		Point p00 = new Point(delta_x, r.nextInt(view.getHeight()));  // hehe
+		Point p00 = new Point(delta_x, view.getHeight()-1);  // hehe
 		Point p01 = new Point(2*delta_x, r.nextInt(view.getHeight()));
 		Point p10 = new Point(3*delta_x, r.nextInt(view.getHeight()));
 		Point p11 = new Point(4*delta_x, r.nextInt(view.getHeight()));
@@ -34,8 +34,6 @@ public class Trajectory implements TimeConscious
 		points.add(p10);
 		points.add(p11);
 	}
-
-
 
 	@Override
 	public void tick(Canvas canvas)
