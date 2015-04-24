@@ -15,10 +15,13 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	private DashTillPuffRenderThread renderThread;
         public Background wall;
         public Background paper;
+	private Trajectory trajectory;
+
 	public DashTillPuffSurfaceView(Context context)
 	{
 		super(context);
 		getHolder().addCallback(this);
+		trajectory = new Trajectory(this);
 
                 wall = new Background(this);
                 paper = new Background(this);
@@ -108,7 +111,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 
 	private void renderGame(Canvas c)
 	{
-                wall.Swerve(c);
-                paper.Swerve(c);
+                wall.draw(c);
+                paper.draw(c);
 	}
 }

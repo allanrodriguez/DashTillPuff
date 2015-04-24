@@ -1,11 +1,7 @@
 package com.example.james.eecs40_assignment2;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-
-import java.util.ArrayList;
+import android.graphics.*;
+import java.util.*;
 
 
 /**
@@ -13,8 +9,13 @@ import java.util.ArrayList;
  */
 public class Trajectory implements TimeConscious
 {
-	private ArrayList<PointF> points = new ArrayList<>();
+	private DashTillPuffSurfaceView view;
+	private ArrayList<Point> points = new ArrayList<>();
 
+	public Trajectory(DashTillPuffSurfaceView v)
+	{
+		this.view = v;
+	}
 
 	@Override
 	public void tick(Canvas canvas)
