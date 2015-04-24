@@ -13,10 +13,15 @@ import android.view.SurfaceView;
 public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolder.Callback, TimeConscious
 {
 	private DashTillPuffRenderThread renderThread;
+        public Background wall;
+        public Background paper;
 	public DashTillPuffSurfaceView(Context context)
 	{
 		super(context);
 		getHolder().addCallback(this);
+
+                wall = new Background(this);
+                paper = new Background(this);
 	}
 
 	@Override
@@ -69,13 +74,41 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	@Override
 	public void tick(Canvas c)
 	{
+                if (wall.drawn && paper.drawn)
+                {
+                        if (wall.getX2() == wall.getX1())
+                        {
+                                wall.setX(0, getWidth() - 1);
+                                wall.setY2(getHeight() - 1);
+                        }
+                        if (paper.getX2() == paper.getX1())
+                        {
+                                paper.setX(getWidth(), 2 * getWidth() - 1);
+                                paper.setY2(getHeight() - 1);
+                        }
 
+                        if (wall.getX2() <= 0)
+                        {
+                                wall.setX(getWidth() - 1, 2 * getWidth() - 1);
+                        }
+                        else if (paper.getX2() <= 0)
+                        {
+                                paper.setX(getWidth() - 1, 2 * getWidth() - 1);
+                        }
+                        else
+                        {
+                                wall.setX(wall.getX2() - getWidth() - 9, wall.getX2() - 10);
+                                paper.setX(paper.getX2() - getWidth() - 9, paper.getX2() - 10);
+                        }
+                }
+                renderGame(c);
 		// Tick background , space ship , cosmic factory , and trajectory .
 		// Draw everything ( restricted to the displayed rectangle ) .
 	}
 
 	private void renderGame(Canvas c)
 	{
-
+                wall.Swerve(c);
+                paper.Swerve(c);
 	}
 }

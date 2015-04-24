@@ -1310,6 +1310,18 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020034;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020035;
         public static final int abc_textfield_search_material=0x7f020036;
+        public static final int black_hole=0x7f020037;
+        public static final int blue_planet=0x7f020038;
+        public static final int cloud=0x7f020039;
+        public static final int earth=0x7f02003a;
+        public static final int glossy_planet=0x7f02003b;
+        public static final int golden_star=0x7f02003c;
+        public static final int neutron_star=0x7f02003d;
+        public static final int shiny_star=0x7f02003e;
+        public static final int space_ship=0x7f02003f;
+        public static final int star1=0x7f020040;
+        public static final int star2=0x7f020041;
+        public static final int wallpaper=0x7f020042;
     }
     public static final class id {
         public static final int action_bar=0x7f090031;

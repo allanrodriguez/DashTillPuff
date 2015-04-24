@@ -3,8 +3,9 @@ package com.example.james.eecs40_assignment2;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
+
 import java.util.ArrayList;
-import java.awt.geom.*;
 
 
 /**
@@ -12,7 +13,7 @@ import java.awt.geom.*;
  */
 public class Trajectory implements TimeConscious
 {
-//	private ArrayList<Point2D.Double> points = new ArrayList<>();
+	private ArrayList<PointF> points = new ArrayList<>();
 
 
 	@Override
