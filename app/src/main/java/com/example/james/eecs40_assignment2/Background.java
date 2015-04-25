@@ -6,9 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-/**
- * Created by James on 4/22/2015.
- */
 public class Background
 {
 	private int x1;

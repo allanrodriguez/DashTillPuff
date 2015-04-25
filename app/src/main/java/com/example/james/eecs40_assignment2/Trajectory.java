@@ -18,14 +18,14 @@ public class Trajectory implements TimeConscious
 	{
 		this.view = v;
 		this.delta_x = 0;
+		this.i = 5;
 	}
 
 	public void initTrajectory()
 	{
 		Random r = new Random();
 		this.delta_x = view.getWidth()/4;
-		this.i = 5;
-		Point p00 = new Point(delta_x, view.getHeight()-1);  // hehe
+		Point p00 = new Point(delta_x, view.getHeight() - view.getShip_size()/2);  // hehe
 		Point p01 = new Point(2*delta_x, r.nextInt(view.getHeight()));
 		Point p10 = new Point(3*delta_x, r.nextInt(view.getHeight()));
 		Point p11 = new Point(4*delta_x, r.nextInt(view.getHeight()));
@@ -33,6 +33,16 @@ public class Trajectory implements TimeConscious
 		points.add(p01);
 		points.add(p10);
 		points.add(p11);
+	}
+
+	public int getX(int index)
+	{
+		return points.get(index).x;
+	}
+
+	public int getY(int index)
+	{
+		return points.get(index).y;
 	}
 
 	@Override
@@ -52,13 +62,10 @@ public class Trajectory implements TimeConscious
 				}
 			}
 		}
-	//	if (view.getWidth() - points.get(points.size()-1).x > delta_x)
-	//	{
-			Random r = new Random();
-			Point lol = new Point(delta_x*this.i, r.nextInt(view.getHeight()));
-			this.i++;
-			points.add(lol);
-	//	}
+		Random r = new Random();
+		Point lol = new Point(delta_x*this.i, r.nextInt(view.getHeight()));
+		this.i++;
+		points.add(lol);
 		draw(canvas);
 	}
 
@@ -78,7 +85,7 @@ public class Trajectory implements TimeConscious
 		paint.setAlpha(255) ; // Control transparency
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(10);
+		paint.setStrokeWidth(view.getHeight()/100);
 		paint.setPathEffect(new DashPathEffect(new float[] {10,20},0));
 		c.drawPath(path, paint);
 	}

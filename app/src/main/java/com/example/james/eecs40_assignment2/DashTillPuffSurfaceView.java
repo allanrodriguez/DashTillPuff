@@ -16,17 +16,25 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
         public Background wall;
         public Background paper;
 	private Trajectory trajectory;
-	private boolean feels_like_the_first_time;	// for initializing trajectory
+	private Starship starship;
+	private boolean feels_like_the_first_time;	// for initializing
 	private final int gotta_go_fast = 10; 		// speed of background
+	private int ship_size;				// size as a of fraction of screen height, assigned in renderGame()
 
 	public DashTillPuffSurfaceView(Context context)
 	{
 		super(context);
 		getHolder().addCallback(this);
-		trajectory = new Trajectory(this);
 		feels_like_the_first_time = true;
+		trajectory = new Trajectory(this);
                 wall = new Background(this);
                 paper = new Background(this);
+		starship = new Starship(this);
+	}
+
+	public int getShip_size()
+	{
+		return ship_size;
 	}
 
 	public int getGotta_go_fast()
@@ -66,8 +74,10 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		switch (e.getAction())
 		{
 			case MotionEvent.ACTION_DOWN: // Thrust the space ship up .
+				starship.setVy(true);
 				break;
 			case MotionEvent.ACTION_UP: // Let space ship fall freely .
+				starship.setVy(false);
 				break;
 		}
 		return true;
@@ -113,10 +123,15 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 }
 		if(feels_like_the_first_time)
 		{
+			ship_size = getHeight()/5;
+			starship.setSize(getHeight()/5);
 			trajectory.initTrajectory();
+			starship.initYs();
+			starship.initXs();
 			feels_like_the_first_time = false;
 		}
 		trajectory.tick(c);
+		starship.tick(c);
                 renderGame(c);
 		// Tick background , space ship , cosmic factory , and trajectory .
 		// Draw everything ( restricted to the displayed rectangle ) .
@@ -127,5 +142,6 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 wall.draw(c);
                 paper.draw(c);
 		trajectory.draw(c);
+		starship.draw(c);
 	}
 }
