@@ -26,11 +26,6 @@ public class Starship
 		bitmap = BitmapFactory.decodeResource(meant_to.getResources(), R.drawable.spaceship, options);
 	}
 
-	public int getSize()
-	{
-		return size;
-	}
-
 	public void setSize(int size)
 	{
 		this.size = size;
