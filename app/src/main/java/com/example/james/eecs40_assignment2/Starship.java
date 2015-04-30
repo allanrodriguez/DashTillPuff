@@ -15,7 +15,6 @@ public class Starship
 	private int y1;
 	private int x2;
 	private int y2;
-	private int size; 	// size as a fraction of screen height
 	private Bitmap bitmap;
 
 	public Starship(DashTillPuffSurfaceView meant_to)
@@ -24,16 +23,6 @@ public class Starship
 		x1 = y1 = x2 = y2 = vy = 0;
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		bitmap = BitmapFactory.decodeResource(meant_to.getResources(), R.drawable.spaceship, options);
-	}
-
-	public int getSize()
-	{
-		return size;
-	}
-
-	public void setSize(int size)
-	{
-		this.size = size;
 	}
 
 	public void setVy(boolean touched)

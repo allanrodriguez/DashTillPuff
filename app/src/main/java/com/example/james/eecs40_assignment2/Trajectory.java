@@ -35,15 +35,23 @@ public class Trajectory implements TimeConscious
 		points.add(p11);
 	}
 
-	public int getX(int index)
-	{
-		return points.get(index).x;
-	}
+        public int getY(int x)
+        {
+                // TODO: FIX THIS, the if condition isn't being executed
+                int i;
+                double slope = 0.0;
 
-	public int getY(int index)
-	{
-		return points.get(index).y;
-	}
+                for (i = 0; i < points.size(); i++)
+                {
+                        if (x >= points.get(i).x && points.get(i + 1) != null && x < points.get(i + 1).x)
+                        {
+                                slope = (points.get(i + 1).y - points.get(i).y) / (points.get(i + 1).x - points.get(i).x);
+                                break;
+                        }
+                }
+                slope = slope * x + points.get(i).y;
+                return (int) slope;
+        }
 
 	@Override
 	public void tick(Canvas canvas)
@@ -62,10 +70,13 @@ public class Trajectory implements TimeConscious
 				}
 			}
 		}
-		Random r = new Random();
-		Point lol = new Point(delta_x*this.i, r.nextInt(view.getHeight()));
-		this.i++;
-		points.add(lol);
+                if (points.size() < 6)
+                {
+                        Random r = new Random();
+                        Point lol = new Point(delta_x * this.i, r.nextInt(view.getHeight()));
+                        this.i++;
+                        points.add(lol);
+                }
 		draw(canvas);
 	}
 

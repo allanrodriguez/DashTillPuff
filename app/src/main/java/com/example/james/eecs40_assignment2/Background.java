@@ -13,7 +13,6 @@ public class Background
 	private int y1;
 	private int y2;
 	private Bitmap bitmap;
-        public boolean drawn = false;
 
 	public Background(DashTillPuffSurfaceView view)
 	{
@@ -31,8 +30,7 @@ public class Background
 		Paint paint = new Paint() ;
 		paint.setAlpha(255) ; // Control transparency
 		Rect dst = new Rect (x1, y1, x2, y2) ; // Where to draw .
-		c.drawBitmap(bitmap, null, dst, paint) ;
-                drawn = true;
+		c.drawBitmap(bitmap, null, dst, paint);
 	}
 	public int getX1()
 	{

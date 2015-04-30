@@ -6,8 +6,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+
 /**
  * Created by our glorious leader on 4/22/2015.
+ * and his friend on 4/24/2015.
  */
 
 public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolder.Callback, TimeConscious
@@ -17,6 +20,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
         public Background paper;
 	private Trajectory trajectory;
 	private Starship starship;
+        private CosmicFactory celestial_bodies;
 	private boolean feels_like_the_first_time;	// for initializing
 	private final int gotta_go_fast = 10; 		// speed of background
 	private int ship_size;				// size as a of fraction of screen height, assigned in renderGame()
@@ -30,6 +34,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 wall = new Background(this);
                 paper = new Background(this);
 		starship = new Starship(this);
+                celestial_bodies = new CosmicFactory(this, trajectory);
 	}
 
 	public int getShip_size()
@@ -94,37 +99,35 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	@Override
 	public void tick(Canvas c)
 	{
-                if (wall.drawn && paper.drawn)
-                {
-                        if (wall.getX2() == wall.getX1())
-                        {
-                                wall.setX(0, getWidth() - 1);
-                                wall.setY2(getHeight() - 1);
-                        }
-                        if (paper.getX2() == paper.getX1())
-                        {
-                                paper.setX(getWidth(), 2 * getWidth() - 1);
-                                paper.setY2(getHeight() - 1);
-                        }
 
-                        if (wall.getX2() <= 0)
-                        {
-                                wall.setX(getWidth() - 1, 2 * getWidth() - 1);
-                        }
-                        else if (paper.getX2() <= 0)
-                        {
-                                paper.setX(getWidth() - 1, 2 * getWidth() - 1);
-                        }
-                        else
-                        {
-                                wall.setX(wall.getX2() - getWidth() - (gotta_go_fast-1), wall.getX2() - gotta_go_fast);
-                                paper.setX(paper.getX2() - getWidth() - (gotta_go_fast-1), paper.getX2() - gotta_go_fast);
-                        }
+                if (wall.getX2() == wall.getX1())
+                {
+                        wall.setX(0, getWidth() - 1);
+                        wall.setY2(getHeight() - 1);
                 }
-		if(feels_like_the_first_time)
+                if (paper.getX2() == paper.getX1())
+                {
+                        paper.setX(getWidth(), 2 * getWidth() - 1);
+                        paper.setY2(getHeight() - 1);
+                }
+
+                if (wall.getX2() <= 0)
+                {
+                        wall.setX(getWidth() - 1, 2 * getWidth() - 1);
+                }
+                else if (paper.getX2() <= 0)
+                {
+                        paper.setX(getWidth() - 1, 2 * getWidth() - 1);
+                }
+                else
+                {
+                        wall.setX(wall.getX2() - getWidth() - (gotta_go_fast - 1), wall.getX2() - gotta_go_fast);
+                        paper.setX(paper.getX2() - getWidth() - (gotta_go_fast - 1), paper.getX2() - gotta_go_fast);
+                }
+
+                if(feels_like_the_first_time)
 		{
 			ship_size = getHeight()/5;
-			starship.setSize(getHeight()/5);
 			trajectory.initTrajectory();
 			starship.initYs();
 			starship.initXs();
@@ -143,5 +146,6 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 paper.draw(c);
 		trajectory.draw(c);
 		starship.draw(c);
+                celestial_bodies.tick(c);
 	}
 }
