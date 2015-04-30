@@ -37,14 +37,10 @@ public class Starship
 		}
 	}
 
-	public void initXs()
+	public void init()
 	{
 		this.x1 = fly.getWidth() / 4 - fly.getShip_size() / 2;
 		this.x2 = fly.getWidth() / 4 + fly.getShip_size() / 2;
-	}
-
-	public void initYs()
-	{
 		this.y1 = fly.getHeight() - fly.getShip_size();
 		this.y2 = fly.getHeight();
 	}

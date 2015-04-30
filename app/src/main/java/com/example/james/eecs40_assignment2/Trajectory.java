@@ -12,13 +12,11 @@ public class Trajectory implements TimeConscious
 	private DashTillPuffSurfaceView view;
 	private ArrayList<Point> points = new ArrayList<>();
 	private int delta_x;
-	private int i;
 
 	public Trajectory(DashTillPuffSurfaceView v)
 	{
 		this.view = v;
 		this.delta_x = 0;
-		this.i = 5;
 	}
 
 	public void initTrajectory()
@@ -70,13 +68,12 @@ public class Trajectory implements TimeConscious
 				}
 			}
 		}
-                if (points.size() < 6)
-                {
-                        Random r = new Random();
-                        Point lol = new Point(delta_x * this.i, r.nextInt(view.getHeight()));
-                        this.i++;
-                        points.add(lol);
-                }
+		if(points.size()<6)
+		{
+			Random r = new Random();
+			Point lol = new Point(delta_x + points.get(points.size()-1).x, r.nextInt(view.getHeight()));
+			points.add(lol);
+		}
 		draw(canvas);
 	}
 

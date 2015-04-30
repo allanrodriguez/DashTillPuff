@@ -23,7 +23,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
         private CosmicFactory celestial_bodies;
 	private boolean feels_like_the_first_time;	// for initializing
 	private final int gotta_go_fast = 10; 		// speed of background
-	private int ship_size;				// size as a of fraction of screen height, assigned in renderGame()
+	private int ship_size;				// size as a of fraction of screen height, assigned in tick()
 
 	public DashTillPuffSurfaceView(Context context)
 	{
@@ -129,8 +129,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		{
 			ship_size = getHeight()/5;
 			trajectory.initTrajectory();
-			starship.initYs();
-			starship.initXs();
+			starship.init();
 			feels_like_the_first_time = false;
 		}
 		trajectory.tick(c);
