@@ -39,8 +39,16 @@ public class Score
 		}
 	}
 
-	public void draw(Canvas c)
+	public void draw(Canvas c, boolean not_touched_yet)
 	{
+		if(not_touched_yet)
+		{
+			Paint paint = new Paint();
+			paint.setColor(Color.WHITE);
+			paint.setStyle(Paint.Style.FILL);
+			paint.setTextSize(view.getHeight()/10);
+			c.drawText("Touch to start", view.getWidth()/3, view.getHeight()/3, paint);
+		}
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Paint.Style.FILL);

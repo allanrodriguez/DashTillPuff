@@ -75,27 +75,30 @@ public class Trajectory implements TimeConscious
 			Point lol = new Point(delta_x + points.get(points.size()-1).x, r.nextInt(view.getHeight()));
 			points.add(lol);
 		}
-		draw(canvas);
+		draw(canvas, view.isTouched_for_the_very_first_time());
 	}
 
-	public void draw(Canvas c)
+	public void draw(Canvas c, boolean touched)
 	{
-		Path path = new Path();
-		path.moveTo(points.get(0).x, points.get(0).y); // Move to first point
-		for (int i = 1; i < points.size(); ++i)
+		if(touched)
 		{
-			if(points.get(i) != null)
+			Path path = new Path();
+			path.moveTo(points.get(0).x, points.get(0).y); // Move to first point
+			for (int i = 1; i < points.size(); ++i)
 			{
-				path.lineTo(points.get(i).x, points.get(i).y);
+				if (points.get(i) != null)
+				{
+					path.lineTo(points.get(i).x, points.get(i).y);
+				}
 			}
+			Paint paint = new Paint();
+			// Set paint color , alpha , line width , dashed style , etc .
+			paint.setAlpha(255); // Control transparency
+			paint.setColor(Color.WHITE);
+			paint.setStyle(Paint.Style.STROKE);
+			paint.setStrokeWidth(view.getHeight() / 100);
+			paint.setPathEffect(new DashPathEffect(new float[]{10, 50}, 0));
+			c.drawPath(path, paint);
 		}
-		Paint paint = new Paint();
-		// Set paint color , alpha , line width , dashed style , etc .
-		paint.setAlpha(255) ; // Control transparency
-		paint.setColor(Color.WHITE);
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(view.getHeight()/100);
-		paint.setPathEffect(new DashPathEffect(new float[] {10,50},0));
-		c.drawPath(path, paint);
 	}
 }

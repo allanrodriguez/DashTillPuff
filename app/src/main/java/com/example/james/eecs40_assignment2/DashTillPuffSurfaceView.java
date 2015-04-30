@@ -51,6 +51,11 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		return this.gotta_go_fast;
 	}
 
+	public boolean isTouched_for_the_very_first_time()
+	{
+		return touched_for_the_very_first_time;
+	}
+
 	@Override
 	public void surfaceCreated(SurfaceHolder holder)
 	{
@@ -144,9 +149,9 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	{
                 wall.draw(c);
                 paper.draw(c);
-		trajectory.draw(c);
+		trajectory.draw(c, touched_for_the_very_first_time);
 		starship.draw(c);
-		score.draw(c);
+		score.draw(c, !touched_for_the_very_first_time);
                 celestial_bodies.tick(c);
 	}
 }
