@@ -20,20 +20,24 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
         public Background paper;
 	private Trajectory trajectory;
 	private Starship starship;
+	private Score score;
         private CosmicFactory celestial_bodies;
-	private boolean feels_like_the_first_time;	// for initializing
-	private final int gotta_go_fast = 10; 		// speed of background
-	private int ship_size;				// size as a of fraction of screen height, assigned in tick()
+	private boolean feels_like_the_first_time;		// for initializing
+	private boolean touched_for_the_very_first_time; 	// for starting game at first touchEvent
+	private final int gotta_go_fast = 10; 			// speed of background
+	private int ship_size;					// size as a of fraction of screen height, assigned in tick()
 
 	public DashTillPuffSurfaceView(Context context)
 	{
 		super(context);
 		getHolder().addCallback(this);
 		feels_like_the_first_time = true;
+		touched_for_the_very_first_time = false;
 		trajectory = new Trajectory(this);
                 wall = new Background(this);
                 paper = new Background(this);
 		starship = new Starship(this);
+		score = new Score(this);
                 celestial_bodies = new CosmicFactory(this, trajectory);
 	}
 
@@ -76,6 +80,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	@Override
 	public boolean onTouchEvent(MotionEvent e)
 	{
+		touched_for_the_very_first_time = true;
 		switch (e.getAction())
 		{
 			case MotionEvent.ACTION_DOWN: // Thrust the space ship up .
@@ -91,52 +96,48 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	@Override
 	public void onDraw(Canvas c)
 	{
+		// Draw everything ( restricted to the displayed rectangle ) .
 		super.onDraw(c);
 		renderGame(c);
-		// Draw everything ( restricted to the displayed rectangle ) .
 	}
 
 	@Override
 	public void tick(Canvas c)
 	{
-
-                if (wall.getX2() == wall.getX1())
-                {
-                        wall.setX(0, getWidth() - 1);
-                        wall.setY2(getHeight() - 1);
-                }
-                if (paper.getX2() == paper.getX1())
-                {
-                        paper.setX(getWidth(), 2 * getWidth() - 1);
-                        paper.setY2(getHeight() - 1);
-                }
-
-                if (wall.getX2() <= 0)
-                {
-                        wall.setX(getWidth() - 1, 2 * getWidth() - 1);
-                }
-                else if (paper.getX2() <= 0)
-                {
-                        paper.setX(getWidth() - 1, 2 * getWidth() - 1);
-                }
-                else
-                {
-                        wall.setX(wall.getX2() - getWidth() - (gotta_go_fast - 1), wall.getX2() - gotta_go_fast);
-                        paper.setX(paper.getX2() - getWidth() - (gotta_go_fast - 1), paper.getX2() - gotta_go_fast);
-                }
-
-                if(feels_like_the_first_time)
+		// Tick background , space ship , cosmic factory , and trajectory .
+		// Draw everything ( restricted to the displayed rectangle ) .
+		if(feels_like_the_first_time) // initialize the game
 		{
+			wall.setX(0, getWidth() - 1);
+			wall.setY2(getHeight() - 1);
+			paper.setX(getWidth(), 2 * getWidth() - 1);
+			paper.setY2(getHeight() - 1);
 			ship_size = getHeight()/5;
 			trajectory.initTrajectory();
 			starship.init();
+			score.init();
 			feels_like_the_first_time = false;
 		}
-		trajectory.tick(c);
-		starship.tick(c);
+		if(touched_for_the_very_first_time)
+		{
+			if (wall.getX2() <= 0)
+			{
+				wall.setX(getWidth() - 1, 2 * getWidth() - 1);
+			}
+			else if (paper.getX2() <= 0)
+			{
+				paper.setX(getWidth() - 1, 2 * getWidth() - 1);
+			}
+			else
+			{
+				wall.setX(wall.getX2() - getWidth() - (gotta_go_fast - 1), wall.getX2() - gotta_go_fast);
+				paper.setX(paper.getX2() - getWidth() - (gotta_go_fast - 1), paper.getX2() - gotta_go_fast);
+			}
+			trajectory.tick(c);
+			starship.tick(c);
+			score.tick();
+		}
                 renderGame(c);
-		// Tick background , space ship , cosmic factory , and trajectory .
-		// Draw everything ( restricted to the displayed rectangle ) .
 	}
 
 	private void renderGame(Canvas c)
@@ -145,6 +146,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 paper.draw(c);
 		trajectory.draw(c);
 		starship.draw(c);
+		score.draw(c);
                 celestial_bodies.tick(c);
 	}
 }

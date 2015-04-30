@@ -47,4 +47,9 @@ public class DashTillPuffRenderThread extends Thread
 			}
 		}
 	}
+
+	public static int getFramePeriod()
+	{
+		return FRAME_PERIOD;
+	}
 }
