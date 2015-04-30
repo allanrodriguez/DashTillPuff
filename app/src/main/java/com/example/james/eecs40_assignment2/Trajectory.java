@@ -35,19 +35,20 @@ public class Trajectory implements TimeConscious
 
         public int getY(int x)
         {
-                // TODO: FIX THIS, the if condition isn't being executed
-                int i;
+                int i, y;
                 double slope = 0.0;
 
                 for (i = 0; i < points.size(); i++)
                 {
-                        if (x >= points.get(i).x && points.get(i + 1) != null && x < points.get(i + 1).x)
+                        if (points.get(i) != null && x >= points.get(i).x && points.get(i + 1) != null && x <= points.get(i + 1).x)
                         {
-                                slope = (points.get(i + 1).y - points.get(i).y) / (points.get(i + 1).x - points.get(i).x);
+                                slope = ((double) (points.get(i + 1).y - points.get(i).y)) / (double) delta_x;
                                 break;
                         }
                 }
-                slope = slope * x + points.get(i).y;
+
+                y = points.get(i).y;
+                slope = slope * (x % delta_x) + y;
                 return (int) slope;
         }
 
