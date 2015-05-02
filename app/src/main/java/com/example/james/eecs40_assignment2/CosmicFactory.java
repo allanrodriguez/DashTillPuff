@@ -47,16 +47,6 @@ public class CosmicFactory implements TimeConscious
                 int height = thehellcatspangledshalalala.getHeight();
                 int width = thehellcatspangledshalalala.getWidth();
                 Random number = new Random();
-                // Create new ‘‘ clusters ’’ of cosmic objects . Alternately place
-                // clusters of cosmic objects above and below the guiding
-                // trajectory .
-
-                // Randomly select the type of cluster objects from a list
-                // ( e . g . , stars , clouds , planets , etc .) . So all objects in
-                // a cluster are of the same type .
-
-                // Remove cosmic objects ( stars , planets , etc .) that moved out
-                // of the scene .
 
                 if (meter > thehellcatspangledshalalala.getWidth() / 2)         // TODO: Fix the rest of this!!!!
                 {
@@ -79,7 +69,7 @@ public class CosmicFactory implements TimeConscious
                         {
                                 if (annie.get(i).get(j) != null)
                                 {
-                                        if (annie.get(i).get(j).x < -(height / 20))
+                                        if (annie.get(i).get(j).x < -thehellcatspangledshalalala.getShip_size())
                                         {
                                                 annie.get(i).remove(j);
                                         }
@@ -90,18 +80,23 @@ public class CosmicFactory implements TimeConscious
                                                 if (top)
                                                 {
                                                         y = number.nextInt(YatX);
-                                                        System.out.println(y);
+                                                        if (YatX - y < thehellcatspangledshalalala.getShip_size() / 4)
+                                                        {
+                                                                y = YatX - thehellcatspangledshalalala.getShip_size();
+                                                        }
                                                 } else
                                                 {
                                                         y = number.nextInt(height - YatX) + YatX;
+                                                        if (y - YatX < thehellcatspangledshalalala.getShip_size() / 4)
+                                                        {
+                                                                y = YatX + thehellcatspangledshalalala.getShip_size();
+                                                        }
                                                 }
                                                 count++;
-                                                y += (height / 20);
                                                 annie.get(i).get(j).y = y;
-                                                annie.get(i).get(j).x -= VELOCITY;
-                                                draw(canvas, i, j);
                                         }
-                                        else if (annie.get(i).get(j).x <= width)
+
+                                        if (annie.get(i).get(j).x <= width)
                                         {
                                                 annie.get(i).get(j).x -= VELOCITY;
                                                 draw(canvas, i, j);
@@ -114,6 +109,7 @@ public class CosmicFactory implements TimeConscious
                         }
                 }
                 meter += VELOCITY;
+                System.out.println(count);
                 if (count == 10)
                 {
                         top = !top;
@@ -124,7 +120,7 @@ public class CosmicFactory implements TimeConscious
         public void draw(Canvas c, int i, int j)
         {
                 int x = annie.get(i).get(j).x, y = annie.get(i).get(j).y;
-                int width = thehellcatspangledshalalala.getShip_size() / 2;
+                int width = thehellcatspangledshalalala.getShip_size() / 4;
                 Bitmap st_vincent;
                 Paint paint = new Paint();
                 paint.setAlpha(255); // Control transparency

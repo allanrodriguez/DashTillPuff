@@ -38,18 +38,18 @@ public class Trajectory implements TimeConscious
                 int i, y;
                 double slope = 0.0;
 
-                for (i = 0; i < points.size(); i++)
+                for (i = 1; i < points.size(); i++)
                 {
-                        if (points.get(i) != null && x >= points.get(i).x && points.get(i + 1) != null && x <= points.get(i + 1).x)
+                        if (points.get(i - 1) != null && x >= points.get(i - 1).x && points.get(i) != null && x < points.get(i).x)
                         {
-                                slope = ((double) (points.get(i + 1).y - points.get(i).y)) / (double) delta_x;
+                                slope = ((double) (points.get(i).y - points.get(i - 1).y)) / (double) delta_x;
                                 break;
                         }
                 }
 
-                y = points.get(i).y;
-                slope = slope * (x % delta_x) + y;
-                return (int) slope;
+                y = points.get(i - 1).y;
+                slope = slope * (x - points.get(i - 1).x) + y;
+                return (int) (slope + 0.5);
         }
 
 	@Override
