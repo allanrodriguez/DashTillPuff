@@ -22,7 +22,6 @@ public class Background
 		this.y2 = 0;
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		bitmap = BitmapFactory.decodeResource(view.getResources(), R.drawable.wallpaper, options);
-
 	}
 
 	public void draw ( Canvas c )
