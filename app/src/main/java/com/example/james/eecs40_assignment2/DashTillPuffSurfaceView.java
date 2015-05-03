@@ -6,8 +6,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.util.ArrayList;
-
 /**
  * Created by our glorious leader on 4/22/2015.
  * and his friend on 4/24/2015.
@@ -16,8 +14,8 @@ import java.util.ArrayList;
 public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolder.Callback, TimeConscious
 {
 	private DashTillPuffRenderThread renderThread;
-        public Background wall;
-        public Background paper;
+        private Background wall;
+        private Background paper;
 	private Trajectory trajectory;
 	private Starship starship;
 	private Score score;
@@ -117,13 +115,13 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 			wall.setY2(getHeight());
 			paper.setX(getWidth(), 2 * getWidth() - 1);
 			paper.setY2(getHeight());
-			ship_size = getHeight()/5;
+			ship_size = getHeight()/6;
 			trajectory.initTrajectory();
 			starship.init();
 			score.init();
 			feels_like_the_first_time = false;
 		}
-		if(touched_for_the_very_first_time)
+		if(touched_for_the_very_first_time) // start the game
 		{
 			if (wall.getX2() <= 0)
 			{

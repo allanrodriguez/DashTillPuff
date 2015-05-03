@@ -19,14 +19,20 @@ public class Trajectory implements TimeConscious
 		this.delta_x = 0;
 	}
 
-	public void initTrajectory()
+	private int randomY()
 	{
 		Random r = new Random();
+		int y = r.nextInt(view.getHeight() - view.getShip_size()) + view.getShip_size()/2;
+		return y;
+	}
+
+	public void initTrajectory()
+	{
 		this.delta_x = view.getWidth()/4;
 		Point p00 = new Point(delta_x, view.getHeight() - view.getShip_size()/2);  // hehe
-		Point p01 = new Point(2*delta_x, r.nextInt(view.getHeight()));
-		Point p10 = new Point(3*delta_x, r.nextInt(view.getHeight()));
-		Point p11 = new Point(4*delta_x, r.nextInt(view.getHeight()));
+		Point p01 = new Point(2*delta_x, randomY());
+		Point p10 = new Point(3*delta_x, randomY());
+		Point p11 = new Point(4*delta_x, randomY());
 		points.add(p00);
 		points.add(p01);
 		points.add(p10);
@@ -71,8 +77,7 @@ public class Trajectory implements TimeConscious
 		}
 		if(points.size()<6)
 		{
-			Random r = new Random();
-			Point lol = new Point(delta_x + points.get(points.size()-1).x, r.nextInt(view.getHeight()));
+			Point lol = new Point(delta_x + points.get(points.size()-1).x, randomY());
 			points.add(lol);
 		}
 		draw(canvas, view.isTouched_for_the_very_first_time());
