@@ -49,6 +49,10 @@ public class Trajectory implements TimeConscious
 
                 y = points.get(i - 1).y;
                 slope = slope * (x - points.get(i - 1).x) + y;
+                if (slope < 0.0)
+                {
+                        return 0;
+                }
                 return (int) (slope + 0.5);
         }
 

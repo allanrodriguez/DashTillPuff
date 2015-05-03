@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 /**
  * Released by Nicki Minaj on 2/14/2012.
@@ -47,6 +48,11 @@ public class Starship
 		this.y1 = fly.getHeight() - fly.getShip_size();
 		this.y2 = fly.getHeight();
 	}
+
+        public Point its_okay_manny()
+        {
+                return new Point((y2 - y1) / 2 + y1, (x2 - x1) / 2 + x1);
+        }
 
 	public void tick(Canvas c)
 	{

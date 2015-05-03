@@ -41,7 +41,12 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 celestial_bodies = new CosmicFactory(this, trajectory);
 	}
 
-	public int getShip_size()
+        public Starship getStarship()
+        {
+                return starship;
+        }
+
+        public int getShip_size()
 	{
 		return ship_size;
 	}

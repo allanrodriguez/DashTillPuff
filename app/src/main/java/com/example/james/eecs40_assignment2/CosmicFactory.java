@@ -21,9 +21,10 @@ public class CosmicFactory implements TimeConscious
         private int[] id = {R.drawable.blackhole, R.drawable.blueplanet, R.drawable.earth, R.drawable.glossyplanet,
                 R.drawable.goldenstar, R.drawable.neutronstar, R.drawable.puffcloud, R.drawable.shinystar,
                 R.drawable.starone, R.drawable.startwo};
-        private ArrayList<ArrayList<Point>> annie = new ArrayList<>(10);
+        private ArrayList<Point[]> annie = new ArrayList<>(10);
         private int meter;
         private int count = 0;
+        private int cosmicWidth;
         private boolean top = true;
         private final int VELOCITY;
 
@@ -33,10 +34,11 @@ public class CosmicFactory implements TimeConscious
                 this.thehellcatspangledshalalala = dtpv;
                 this.trajectory = t;
                 this.meter = dtpv.getWidth();
+                this.cosmicWidth = thehellcatspangledshalalala.getShip_size() / 2;
                 this.VELOCITY = thehellcatspangledshalalala.getGotta_go_fast();
                 for (i = 0; i < 10; i++)
                 {
-                        annie.add(new ArrayList<Point>(30));
+                        annie.add(new Point[30]);
                 }
         }
 
@@ -48,79 +50,108 @@ public class CosmicFactory implements TimeConscious
                 int width = thehellcatspangledshalalala.getWidth();
                 Random number = new Random();
 
-                if (meter > thehellcatspangledshalalala.getWidth() / 2)         // TODO: Fix the rest of this!!!!
+                if (meter > thehellcatspangledshalalala.getWidth() / 2)
                 {
                         type = number.nextInt(id.length);
                         meter = 0;
                         for (i = 0; i < 10; i++)
                         {
-                                if (i == 0)
-                                {
-
-                                }
                                 x = number.nextInt(width / 2) + width;
-                                annie.get(type).add(new Point(x, -500));
+                                for (j = 0; j < 30; j++)
+                                {
+                                        if (annie.get(type)[j] == null)
+                                        {
+                                                annie.get(type)[j] = new Point(x, -500);
+                                                break;
+                                        }
+                                }
                         }
                 }
 
                 for (i = 0; i < annie.size(); i++)
                 {
-                        for (j = 0; j < annie.get(i).size(); j++)
+                        for (j = 0; j < annie.get(i).length; j++)
                         {
-                                if (annie.get(i).get(j) != null)
+                                if (annie.get(i)[j] != null)
                                 {
-                                        if (annie.get(i).get(j).x < -thehellcatspangledshalalala.getShip_size())
+                                        if (annie.get(i)[j].x <= width && annie.get(i)[j].y < 0)
                                         {
-                                                annie.get(i).remove(j);
-                                        }
-                                        else if (annie.get(i).get(j).x <= width && annie.get(i).get(j).y < 0)
-                                        {
-                                                YatX = trajectory.getY(annie.get(i).get(j).x);
+                                                YatX = trajectory.getY(annie.get(i)[j].x);
 
                                                 if (top)
                                                 {
                                                         y = number.nextInt(YatX);
-                                                        if (YatX - y < thehellcatspangledshalalala.getShip_size() / 4)
+                                                        if (YatX - y < cosmicWidth)
                                                         {
-                                                                y = YatX - thehellcatspangledshalalala.getShip_size();
+                                                                y = YatX - 4 * cosmicWidth;
                                                         }
-                                                } else
+                                                        if (y < cosmicWidth / 2)
+                                                        {
+                                                                y = cosmicWidth / 2;
+                                                        }
+                                                }
+                                                else
                                                 {
                                                         y = number.nextInt(height - YatX) + YatX;
-                                                        if (y - YatX < thehellcatspangledshalalala.getShip_size() / 4)
+                                                        if (y - YatX < cosmicWidth)
                                                         {
-                                                                y = YatX + thehellcatspangledshalalala.getShip_size();
+                                                                y = YatX + 4 * cosmicWidth;
+                                                        }
+                                                        if (height - y < cosmicWidth / 2)
+                                                        {
+                                                                y = height - cosmicWidth / 2;
                                                         }
                                                 }
                                                 count++;
-                                                annie.get(i).get(j).y = y;
+                                                if (count >= 10)
+                                                {
+                                                        top = !top;
+                                                        count = 0;
+                                                }
+                                                annie.get(i)[j].y = y;
                                         }
-
-                                        if (annie.get(i).get(j).x <= width)
+                                        if (annie.get(i)[j].x <= width)
                                         {
-                                                annie.get(i).get(j).x -= VELOCITY;
                                                 draw(canvas, i, j);
                                         }
-                                        else
+                                        annie.get(i)[j].x -= VELOCITY;
+
+                                        if (annie.get(i)[j].x < - (2 * cosmicWidth))
                                         {
-                                                annie.get(i).get(j).x -= VELOCITY;
+                                                annie.get(i)[j] = null;
                                         }
                                 }
                         }
                 }
                 meter += VELOCITY;
-                System.out.println(count);
-                if (count == 10)
+        }
+
+        public void Trybmp()
+        {
+                int i, j, x, y;
+                Point starship;
+                for (i = 0; i < annie.size(); i++)
                 {
-                        top = !top;
-                        count = 0;
+                        for (j = 0; j < annie.get(i).length; j++)
+                        {
+                                if (annie.get(i)[j] != null)
+                                {
+                                        x = annie.get(i)[j].x;
+                                        y = annie.get(i)[j].y;
+                                        starship = thehellcatspangledshalalala.getStarship().its_okay_manny();
+                                        if (Math.sqrt((y - starship.y) * (y - starship.y) + (x - starship.x) * (x - starship.x)) <= 3 * cosmicWidth / 2)
+                                        {
+                                                // Restart game
+                                        }
+                                }
+                        }
                 }
         }
 
         public void draw(Canvas c, int i, int j)
         {
-                int x = annie.get(i).get(j).x, y = annie.get(i).get(j).y;
-                int width = thehellcatspangledshalalala.getShip_size() / 4;
+                int x = annie.get(i)[j].x, y = annie.get(i)[j].y;
+                int width = cosmicWidth / 2;
                 Bitmap st_vincent;
                 Paint paint = new Paint();
                 paint.setAlpha(255); // Control transparency
