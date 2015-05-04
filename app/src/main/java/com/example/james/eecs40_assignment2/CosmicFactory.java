@@ -13,6 +13,7 @@ import java.util.Random;
 /**
  * Created by James on 4/22/2015.
  * Crafted by the wizard Allan's talented artisan hands on 4/30/2015.
+ * this is fiyah
  */
 public class CosmicFactory implements TimeConscious
 {
@@ -34,7 +35,7 @@ public class CosmicFactory implements TimeConscious
                 this.thehellcatspangledshalalala = dtpv;
                 this.trajectory = t;
                 this.meter = dtpv.getWidth();
-                this.cosmicWidth = thehellcatspangledshalalala.getShip_size() / 2;
+                this.cosmicWidth = 0;
                 this.VELOCITY = thehellcatspangledshalalala.getGotta_go_fast();
                 for (i = 0; i < 10; i++)
                 {
@@ -45,12 +46,17 @@ public class CosmicFactory implements TimeConscious
         @Override
         public void tick(Canvas canvas)
         {
-                int x = 0, YatX, y, type, i, j;
+                int x, YatX, y, type, i, j;
                 int height = thehellcatspangledshalalala.getHeight();
                 int width = thehellcatspangledshalalala.getWidth();
                 Random number = new Random();
 
-                if (meter > thehellcatspangledshalalala.getWidth() / 2)
+                if (cosmicWidth <= 0)
+                {
+                        cosmicWidth = thehellcatspangledshalalala.getShip_size() / 2;
+                }
+
+                if (meter > width / 2)
                 {
                         type = number.nextInt(id.length);
                         meter = 0;
@@ -138,7 +144,7 @@ public class CosmicFactory implements TimeConscious
                                 {
                                         x = annie.get(i)[j].x;
                                         y = annie.get(i)[j].y;
-                                        starship = thehellcatspangledshalalala.getStarship().its_okay_manny();
+                                        starship = thehellcatspangledshalalala.getStarship().its_okay_manny();          // Find the star-ship's location
                                         if (Math.sqrt((y - starship.y) * (y - starship.y) + (x - starship.x) * (x - starship.x)) <= 3 * cosmicWidth / 2)
                                         {
                                                 // Restart game

@@ -51,7 +51,7 @@ public class Starship
 
         public Point its_okay_manny()
         {
-                return new Point((y2 - y1) / 2 + y1, (x2 - x1) / 2 + x1);
+                return new Point((x2 - x1) / 2 + x1, (y2 - y1) / 2 + y1);
         }
 
 	public void tick(Canvas c)

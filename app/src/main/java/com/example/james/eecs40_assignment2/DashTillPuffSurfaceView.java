@@ -169,6 +169,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 if (touched_for_the_very_first_time)
                 {
                         celestial_bodies.tick(c);
+                        celestial_bodies.Trybmp();
                 }
 	}
 }

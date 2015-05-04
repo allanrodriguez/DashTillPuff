@@ -22,8 +22,7 @@ public class Trajectory implements TimeConscious
 	private int randomY()
 	{
 		Random r = new Random();
-		int y = r.nextInt(view.getHeight() - view.getShip_size()) + view.getShip_size()/2;
-		return y;
+                return r.nextInt(view.getHeight() - view.getShip_size()) + view.getShip_size()/2;
 	}
 
 	public void initTrajectory()
