@@ -13,7 +13,6 @@ import java.util.Random;
 /**
  * Created by James on 4/22/2015.
  * Crafted by the wizard Allan's talented artisan hands on 4/30/2015.
- * this is fiyah
  */
 public class CosmicFactory implements TimeConscious
 {
@@ -31,7 +30,6 @@ public class CosmicFactory implements TimeConscious
 
         public CosmicFactory(DashTillPuffSurfaceView dtpv, Trajectory t)
         {
-                int i;
                 this.thehellcatspangledshalalala = dtpv;
                 this.trajectory = t;
                 this.meter = 0;
