@@ -150,6 +150,7 @@ public class CosmicFactory implements TimeConscious
                                                 // Restart game
 						thehellcatspangledshalalala.setFeels_like_the_first_time(true);
 						thehellcatspangledshalalala.setTouched_for_the_very_first_time(false);
+						annie.clear();
                                         }
                                 }
                         }

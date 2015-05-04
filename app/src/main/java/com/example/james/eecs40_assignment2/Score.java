@@ -15,12 +15,13 @@ public class Score
 	private int x;
 	private int y;
 	private int score;
+	private int score2;
 	private int time;
 
 	public Score(DashTillPuffSurfaceView v)
 	{
 		view = v;
-		score = x = y = size = 0;
+		score2 = score = x = y = size = 0;
 	}
 
 	public void init()
@@ -31,12 +32,18 @@ public class Score
 		score = 0;
 	}
 
+	public void setScore2(int score2)
+	{
+		this.score2 = score2;
+	}
+
 	public void tick()
 	{
 		time += 1;
-		if(time%5 == 0)
+		if(time%10 == 0)
 		{
 			score++;
+			score2 = score;
 		}
 	}
 
@@ -47,14 +54,11 @@ public class Score
 			Paint p = new Paint();
 			p.setColor(Color.WHITE);
 			p.setStyle(Paint.Style.FILL);
-			p.setTextSize(view.getHeight()/10);
-			if(score > 0)
+			p.setTextSize(view.getHeight() / 10);
+			c.drawText("Touch to start\n", view.getWidth()/3, view.getHeight()/3, p);
+			if(score2 > 0)
 			{
-				c.drawText("Touch to start\nScore: "+String.valueOf(score), view.getWidth()/3, view.getHeight()/3, p);
-			}
-			else
-			{
-				c.drawText("Touch to start", view.getWidth()/3, view.getHeight()/3, p);
+				c.drawText("Score: "+String.valueOf(score2), view.getWidth()/3, view.getHeight()/2, p);
 			}
 		}
 		Paint paint = new Paint();

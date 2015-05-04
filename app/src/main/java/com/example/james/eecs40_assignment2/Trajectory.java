@@ -27,6 +27,10 @@ public class Trajectory implements TimeConscious
 
 	public void initTrajectory()
 	{
+		if(!points.isEmpty())
+		{
+			points.clear();
+		}
 		this.delta_x = view.getWidth()/4;
 		Point p00 = new Point(delta_x, view.getHeight() - view.getShip_size()/2);  // hehe
 		Point p01 = new Point(2*delta_x, randomY());

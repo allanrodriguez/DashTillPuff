@@ -125,6 +125,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		// Tick background , space ship , cosmic factory , and trajectory .
 		// Draw everything ( restricted to the displayed rectangle ) .
 		celestial_bodies.Trybmp();
+		System.out.println("feels like the first time? "+feels_like_the_first_time+", touched for the very first time? "+touched_for_the_very_first_time);
 		if(feels_like_the_first_time) // initialize the game
 		{
 			wall.setX(0, getWidth() - 1);
@@ -139,6 +140,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		}
 		if(touched_for_the_very_first_time) // start the game
 		{
+			score.setScore2(0);
 			if (wall.getX2() <= 0)
 			{
 				wall.setX(getWidth() - 1, 2 * getWidth() - 1);
@@ -169,7 +171,6 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 if (touched_for_the_very_first_time)
                 {
                         celestial_bodies.tick(c);
-                        celestial_bodies.Trybmp();
                 }
 	}
 }
