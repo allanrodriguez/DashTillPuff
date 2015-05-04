@@ -59,6 +59,16 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 		return touched_for_the_very_first_time;
 	}
 
+	public void setFeels_like_the_first_time(boolean feels_like_the_first_time)
+	{
+		this.feels_like_the_first_time = feels_like_the_first_time;
+	}
+
+	public void setTouched_for_the_very_first_time(boolean touched_for_the_very_first_time)
+	{
+		this.touched_for_the_very_first_time = touched_for_the_very_first_time;
+	}
+
 	@Override
 	public void surfaceCreated(SurfaceHolder holder)
 	{
@@ -114,6 +124,7 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	{
 		// Tick background , space ship , cosmic factory , and trajectory .
 		// Draw everything ( restricted to the displayed rectangle ) .
+		celestial_bodies.Trybmp();
 		if(feels_like_the_first_time) // initialize the game
 		{
 			wall.setX(0, getWidth() - 1);

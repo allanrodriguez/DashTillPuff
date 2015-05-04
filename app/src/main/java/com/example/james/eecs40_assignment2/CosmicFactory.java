@@ -142,6 +142,8 @@ public class CosmicFactory implements TimeConscious
                                         if (Math.sqrt((y - starship.y) * (y - starship.y) + (x - starship.x) * (x - starship.x)) <= 3 * cosmicWidth / 2)
                                         {
                                                 // Restart game
+						thehellcatspangledshalalala.setFeels_like_the_first_time(true);
+						thehellcatspangledshalalala.setTouched_for_the_very_first_time(false);
                                         }
                                 }
                         }

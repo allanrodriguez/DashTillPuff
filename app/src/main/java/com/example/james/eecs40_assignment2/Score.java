@@ -28,6 +28,7 @@ public class Score
 		x = view.getHeight()/20;
 		y = view.getHeight()/15;
 		size = view.getHeight()/15;
+		score = 0;
 	}
 
 	public void tick()
@@ -43,11 +44,18 @@ public class Score
 	{
 		if(not_touched_yet)
 		{
-			Paint paint = new Paint();
-			paint.setColor(Color.WHITE);
-			paint.setStyle(Paint.Style.FILL);
-			paint.setTextSize(view.getHeight()/10);
-			c.drawText("Touch to start", view.getWidth()/3, view.getHeight()/3, paint);
+			Paint p = new Paint();
+			p.setColor(Color.WHITE);
+			p.setStyle(Paint.Style.FILL);
+			p.setTextSize(view.getHeight()/10);
+			if(score > 0)
+			{
+				c.drawText("Touch to start\nScore: "+String.valueOf(score), view.getWidth()/3, view.getHeight()/3, p);
+			}
+			else
+			{
+				c.drawText("Touch to start", view.getWidth()/3, view.getHeight()/3, p);
+			}
 		}
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
