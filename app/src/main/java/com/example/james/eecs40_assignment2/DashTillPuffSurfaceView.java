@@ -136,11 +136,11 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 			trajectory.initTrajectory();
 			starship.init();
 			score.init();
+			celestial_bodies.init();
 			feels_like_the_first_time = false;
 		}
 		if(touched_for_the_very_first_time) // start the game
 		{
-			score.setScore2(0);
 			if (wall.getX2() <= 0)
 			{
 				wall.setX(getWidth() - 1, 2 * getWidth() - 1);

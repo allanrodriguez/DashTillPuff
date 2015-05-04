@@ -43,7 +43,16 @@ public class CosmicFactory implements TimeConscious
                 }
         }
 
-        @Override
+	public void init()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			annie.add(new Point[30]);
+		}
+		cosmicWidth = thehellcatspangledshalalala.getShip_size() / 2;
+	}
+
+	@Override
         public void tick(Canvas canvas)
         {
                 int x, YatX, y, type, i, j;

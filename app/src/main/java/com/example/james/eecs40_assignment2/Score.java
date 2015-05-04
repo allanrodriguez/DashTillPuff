@@ -32,11 +32,6 @@ public class Score
 		score = 0;
 	}
 
-	public void setScore2(int score2)
-	{
-		this.score2 = score2;
-	}
-
 	public void tick()
 	{
 		time += 1;
@@ -58,7 +53,7 @@ public class Score
 			c.drawText("Touch to start\n", view.getWidth()/3, view.getHeight()/3, p);
 			if(score2 > 0)
 			{
-				c.drawText("Score: "+String.valueOf(score2), view.getWidth()/3, view.getHeight()/2, p);
+				c.drawText("Last Score: "+String.valueOf(score2), view.getWidth()/3, view.getHeight()/2, p);
 			}
 		}
 		Paint paint = new Paint();
