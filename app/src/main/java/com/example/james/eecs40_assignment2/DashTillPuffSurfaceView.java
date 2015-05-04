@@ -98,10 +98,10 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 	@Override
 	public boolean onTouchEvent(MotionEvent e)
 	{
-		touched_for_the_very_first_time = true;
 		switch (e.getAction())
 		{
 			case MotionEvent.ACTION_DOWN: // Thrust the space ship up .
+				touched_for_the_very_first_time = true;
 				starship.setVy(true);
 				break;
 			case MotionEvent.ACTION_UP: // Let space ship fall freely .
@@ -166,10 +166,10 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
                 paper.draw(c);
 		trajectory.draw(c, touched_for_the_very_first_time);
 		starship.draw(c);
-		score.draw(c, !touched_for_the_very_first_time);
                 if (touched_for_the_very_first_time)
                 {
                         celestial_bodies.tick(c);
                 }
+		score.draw(c, !touched_for_the_very_first_time);
 	}
 }

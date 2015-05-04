@@ -13,8 +13,8 @@ import android.graphics.Rect;
 public class Starship
 {
 	private DashTillPuffSurfaceView fly;
-	private int vy;
 	private final int VELOCITY = 15;
+	private int vy;
 	private int x1;
 	private int y1;
 	private int x2;
