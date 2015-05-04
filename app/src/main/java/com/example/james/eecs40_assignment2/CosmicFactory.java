@@ -24,7 +24,7 @@ public class CosmicFactory implements TimeConscious
                 R.drawable.starone, R.drawable.startwo};
         private ArrayList<Point[]> annie = new ArrayList<>(10);
         private int meter;
-        private int count = 0;
+        private int count;
         private int cosmicWidth;
         private boolean top = true;
         private final int VELOCITY;
@@ -34,17 +34,15 @@ public class CosmicFactory implements TimeConscious
                 int i;
                 this.thehellcatspangledshalalala = dtpv;
                 this.trajectory = t;
-                this.meter = dtpv.getWidth();
+                this.meter = 0;
+                this.count = 0;
                 this.cosmicWidth = 0;
                 this.VELOCITY = thehellcatspangledshalalala.getGotta_go_fast();
-                for (i = 0; i < 10; i++)
-                {
-                        annie.add(new Point[30]);
-                }
         }
 
 	public void init()
 	{
+                this.count = 0;
 		for (int i = 0; i < 10; i++)
 		{
 			annie.add(new Point[30]);

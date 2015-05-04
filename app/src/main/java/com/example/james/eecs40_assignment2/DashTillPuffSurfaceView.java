@@ -150,8 +150,8 @@ public class DashTillPuffSurfaceView extends SurfaceView implements SurfaceHolde
 			}
 			else
 			{
-				wall.setX(wall.getX2() - getWidth() - (gotta_go_fast - 1), wall.getX2() - gotta_go_fast);
-				paper.setX(paper.getX2() - getWidth() - (gotta_go_fast - 1), paper.getX2() - gotta_go_fast);
+				wall.setX(wall.getX2() - getWidth() - gotta_go_fast + 5, wall.getX2() - gotta_go_fast + 8);
+				paper.setX(paper.getX2() - getWidth() - gotta_go_fast + 5, paper.getX2() - gotta_go_fast + 8);
 			}
 			trajectory.tick(c);
 			starship.tick(c);
