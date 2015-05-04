@@ -49,7 +49,6 @@ public class CosmicFactory implements TimeConscious
 		{
 			annie.add(new Point[30]);
 		}
-		cosmicWidth = thehellcatspangledshalalala.getShip_size() / 2;
 	}
 
 	@Override
