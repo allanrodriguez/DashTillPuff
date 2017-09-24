@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.james.eecs40_assignment2"
+    package="com.eecs40.assignment2"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:label="Dash Till Puff!"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.james.eecs40_assignment2.MainActivity"
+            android:name="com.eecs40.assignment2.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Dash Till Puff!"
             android:screenOrientation="landscape" >

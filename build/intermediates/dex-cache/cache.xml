@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-9ddd2bbebe08cb492158194309a046a0a42c22a0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\pre-dexed\debug\classes-696babc07ff7651a766927c8d1065a17dbf3f1d5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\pre-dexed\debug\classes-dfa6c8011b2a17ab6773c2bf3526adc3c5fe5218.jar" />
+    </item>
+    <item
+        jar="C:\Users\Allan\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Allan\eecs40_assignment2\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-3e86d781bbb6ce9cf2bdda2635090b6d68d16e44.jar" />
+    </item>
+
+</items>
